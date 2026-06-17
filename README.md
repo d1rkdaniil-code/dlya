@@ -15,7 +15,7 @@
    ```bash
    docker-compose up --build
 ```
-
+```
 Или локально:
    ```bash
    pip install -r requirements.txt
