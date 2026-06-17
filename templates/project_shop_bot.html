@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<div style="display:flex;justify-content:space-between;align-items:center;">
+    <h2 style="font-size:2rem;">🤖 Telegram-бот магазина — каталог</h2>
+    <a href="{{ url_for('projects.show_cart') }}" style="background:var(--bg-header);padding:0.5rem 1.5rem;border-radius:2rem;color:var(--text-secondary);text-decoration:none;">
+        🛒 Корзина ({{ cart_count or 0 }})
+    </a>
+</div>
+<p style="color:var(--text-secondary);margin-bottom:2rem;">Ниже представлены товары. Нажмите "В корзину", чтобы добавить.</p>
+<div class="card-grid">
+    {% for product in products %}
+    <div class="card" style="text-align:center;">
+        <h3>{{ product.name }}</h3>
+        <p style="font-size:1.5rem;color:var(--text-accent);">{{ product.price }} ₽</p>
+        <form method="POST" action="{{ url_for('projects.add_to_cart', product_id=product.id) }}" style="display:inline;">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <button type="submit" style="background:#5f73ff;border:none;color:white;padding:0.6rem 1.5rem;border-radius:2rem;text-decoration:none;font-weight:bold;cursor:pointer;">В корзину</button>
+        </form>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% block content %}
+<section style="background:var(--bg-header);border-radius:2rem;padding:3rem 2rem;margin-bottom:2rem;text-align:center;border:1px solid rgba(255,255,255,0.05);">
+    <h1 style="font-size:3rem;background:linear-gradient(135deg,#b4bfff,#7a8cff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Автошкола «Профи-Драйв»</h1>
+    <p style="font-size:1.4rem;color:var(--text-secondary);max-width:700px;margin:0 auto;">Обучение вождению с нуля. Лицензия, опытные инструкторы, гарантия сдачи экзаменов.</p>
+    <a href="#record" style="display:inline-block;margin-top:2rem;background:#5f73ff;color:#fff;padding:1rem 2.5rem;border-radius:3rem;text-decoration:none;font-weight:bold;font-size:1.2rem;box-shadow:0 8px 20px rgba(95,115,255,0.3);">Записаться на занятие →</a>
+</section>
+<h2 style="font-size:2rem;margin-bottom:1rem;">📚 Программы обучения</h2>
+<div class="card-grid" style="margin-bottom:3rem;">
+    <div class="card" style="border-left-color:#5f73ff;display:flex;flex-direction:column;">
+        <h3>Категория «B» (легковой автомобиль)</h3>
+        <p><strong>Срок:</strong> 2,5 месяца (теория + практика)</p>
+        <p><strong>Теория:</strong> 56 академических часов (ПДД, устройство авто, первая помощь)</p>
+        <p><strong>Практика:</strong> 56 часов вождения (город, автодром, ночное время)</p>
+        <p><strong>Стоимость:</strong> 35 000 ₽ (возможна рассрочка)</p>
+        <a href="{{ url_for('projects.auto_school', category='B (МКПП)') }}#record" style="margin-top:auto;background:#5f73ff;color:#fff;padding:0.6rem 1.5rem;border-radius:2rem;text-align:center;text-decoration:none;font-weight:bold;">Записаться на эту программу</a>
+    </div>
+    <div class="card" style="border-left-color:#ffb347;display:flex;flex-direction:column;">
+        <h3>Категория «A» (мотоцикл)</h3>
+        <p><strong>Срок:</strong> 1,5 месяца (теория + практика)</p>
+        <p><strong>Теория:</strong> 36 академических часов</p>
+        <p><strong>Практика:</strong> 28 часов вождения</p>
+        <p><strong>Стоимость:</strong> 22 000 ₽</p>
+        <a href="{{ url_for('projects.auto_school', category='A') }}#record" style="margin-top:auto;background:#ffb347;color:#1a1e2e;padding:0.6rem 1.5rem;border-radius:2rem;text-align:center;text-decoration:none;font-weight:bold;">Записаться на эту программу</a>
+    </div>
+    <div class="card" style="border-left-color:#4caf50;display:flex;flex-direction:column;">
+        <h3>Категория «B» (автомат)</h3>
+        <p><strong>Срок:</strong> 2 месяца (акцент на автоматическую КПП)</p>
+        <p><strong>Теория:</strong> 56 часов</p>
+        <p><strong>Практика:</strong> 50 часов на авто с АКПП</p>
+        <p><strong>Стоимость:</strong> 38 000 ₽</p>
+        <a href="{{ url_for('projects.auto_school', category='B (АКПП)') }}#record" style="margin-top:auto;background:#4caf50;color:#fff;padding:0.6rem 1.5rem;border-radius:2rem;text-align:center;text-decoration:none;font-weight:bold;">Записаться на эту программу</a>
+    </div>
+</div>
+<h2 style="font-size:2rem;margin:2rem 0 1rem;">✅ Почему выбирают нас</h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;margin-bottom:3rem;">
+    <div style="background:var(--bg-card);padding:1.5rem;border-radius:1.5rem;text-align:center;border:1px solid var(--border-color);">
+        <div style="font-size:2.5rem;">🚦</div>
+        <h4>Опытные инструкторы</h4>
+        <p style="color:var(--text-secondary);font-size:0.95rem;">Стаж вождения от 10 лет, психологическая подготовка</p>
+    </div>
+    <div style="background:var(--bg-card);padding:1.5rem;border-radius:1.5rem;text-align:center;border:1px solid var(--border-color);">
+        <div style="font-size:2.5rem;">🕒</div>
+        <h4>Гибкий график</h4>
+        <p style="color:var(--text-secondary);font-size:0.95rem;">Утренние, вечерние и выходные группы</p>
+    </div>
+    <div style="background:var(--bg-card);padding:1.5rem;border-radius:1.5rem;text-align:center;border:1px solid var(--border-color);">
+        <div style="font-size:2.5rem;">🚗</div>
+        <h4>Новые авто</h4>
+        <p style="color:var(--text-secondary);font-size:0.95rem;">Автомобили не старше 3 лет, кондиционер, АКПП/МКПП</p>
+    </div>
+    <div style="background:var(--bg-card);padding:1.5rem;border-radius:1.5rem;text-align:center;border:1px solid var(--border-color);">
+        <div style="font-size:2.5rem;">📄</div>
+        <h4>Официальная лицензия</h4>
+        <p style="color:var(--text-secondary);font-size:0.95rem;">Выдаём свидетельства об окончании, помогаем с ГИБДД</p>
+    </div>
+</div>
+<h2 style="font-size:2rem;margin:2rem 0 1rem;">💬 Отзывы наших учеников</h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem;margin-bottom:3rem;">
+    <div style="background:var(--bg-card);padding:1.5rem;border-radius:1.5rem;">
+        <p style="color:var(--text-secondary);">«Сдал экзамен с первого раза! Инструктор Сергей – настоящий профессионал, объяснял всё до мельчайших деталей.»</p>
+        <p style="margin-top:0.5rem;color:var(--text-accent);">— Анна, 23 года</p>
+    </div>
+    <div style="background:var(--bg-card);padding:1.5rem;border-radius:1.5rem;">
+        <p style="color:var(--text-secondary);">«Очень удобный график, смог совмещать с работой. Автомобили новые, в салоне чисто, кондиционер – это спасение летом.»</p>
+        <p style="margin-top:0.5rem;color:var(--text-accent);">— Михаил, 34 года</p>
+    </div>
+    <div style="background:var(--bg-card);padding:1.5rem;border-radius:1.5rem;">
+        <p style="color:var(--text-secondary);">«Боялась водить, но преподаватель – настоящий психолог, помог преодолеть страх. Теперь уверенно чувствую себя за рулём.»</p>
+        <p style="margin-top:0.5rem;color:var(--text-accent);">— Екатерина, 19 лет</p>
+    </div>
+</div>
+<div id="record" style="background:var(--bg-form);border-radius:2rem;padding:2.5rem;max-width:650px;margin:0 auto;">
+    <h2 style="font-size:1.8rem;text-align:center;margin-bottom:1rem;">📝 Запись на пробное занятие</h2>
+    <p style="text-align:center;color:var(--text-secondary);margin-bottom:1.5rem;">Первое занятие – бесплатно! Оставьте заявку, и мы перезвоним.</p>
+    <form method="POST" action="{{ url_for('projects.auto_school') }}">
+        {{ form.hidden_tag() }}
+        <div style="margin-bottom:1.5rem;">
+            {{ form.name.label }}
+            {{ form.name(class="form-control", style="width:100%;padding:0.8rem;background:var(--bg-input);border:1px solid var(--border-color);border-radius:1rem;color:var(--text-primary);") }}
+        </div>
+        <div style="margin-bottom:1.5rem;">
+            {{ form.phone.label }}
+            {{ form.phone(class="form-control", style="width:100%;padding:0.8rem;background:var(--bg-input);border:1px solid var(--border-color);border-radius:1rem;color:var(--text-primary);") }}
+        </div>
+        <div style="margin-bottom:1.5rem;">
+            {{ form.category.label }}
+            {{ form.category(class="form-control", style="width:100%;padding:0.8rem;background:var(--bg-input);border:1px solid var(--border-color);border-radius:1rem;color:var(--text-primary);") }}
+        </div>
+        <div style="margin-bottom:1.5rem;display:flex;align-items:flex-start;gap:0.8rem;">
+            {{ form.agree() }}
+            {{ form.agree.label }}
+        </div>
+        <div style="margin-bottom:1.5rem;">
+            <label>Проверка: сколько будет {{ captcha_a }} + {{ captcha_b }}?</label>
+            <input type="text" name="captcha_answer" required style="width:100%;padding:0.8rem;background:var(--bg-input);border:1px solid var(--border-color);border-radius:1rem;color:var(--text-primary);">
+        </div>
+        <button type="submit" style="background:#5f73ff;border:none;color:white;padding:0.8rem 2rem;border-radius:3rem;cursor:pointer;width:100%;font-weight:bold;font-size:1rem;">Записаться</button>
+    </form>
+    <p style="margin-top:1.5rem;text-align:center;color:var(--text-muted);font-size:0.9rem;">Нажимая «Записаться», вы даёте согласие на обработку персональных данных.</p>
+</div>
+<div style="margin-top:3rem;padding:2rem;background:var(--bg-form);border-radius:2rem;text-align:center;">
+    <h2 style="font-size:1.5rem;">📍 Контакты</h2>
+    <p style="color:var(--text-secondary);margin:0.5rem 0;">Адрес: г. Москва, ул. Ленина, д. 10, оф. 205</p>
+    <p style="color:var(--text-secondary);margin:0.5rem 0;">📞 +7 (495) 123-45-67</p>
+    <p style="color:var(--text-secondary);margin:0.5rem 0;">✉️ info@profidrive.ru</p>
+    <p style="color:var(--text-accent);margin-top:0.5rem;">Режим работы: пн–сб 9:00–21:00</p>
+</div>
+{% endblock %}

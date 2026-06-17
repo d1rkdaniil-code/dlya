@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 style="font-size:2rem;">Связь со мной</h2>
+<form method="POST" class="contact-form">
+    {{ form.hidden_tag() }}
+    <div>
+        {{ form.name.label }}
+        {{ form.name(class="form-control") }}
+    </div>
+    <div>
+        {{ form.email.label }}
+        {{ form.email(class="form-control") }}
+    </div>
+    <div>
+        {{ form.message.label }}
+        {{ form.message(class="form-control", rows=5) }}
+    </div>
+    <div style="margin:1rem 0;">
+        <label>Проверка: сколько будет {{ captcha_a }} + {{ captcha_b }}?</label>
+        <input type="text" name="captcha_answer" required style="padding:0.5rem; border-radius:0.5rem; border:1px solid var(--border-color); background:var(--bg-input); color:var(--text-primary);">
+    </div>
+    <button type="submit">Отправить</button>
+</form>
+{% endblock %}

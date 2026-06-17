@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 style="font-size:2rem;">Вход в админ-панель</h2>
+<form method="POST" action="{{ url_for('admin.login') }}" style="max-width:400px;margin:2rem auto;background:var(--bg-form);padding:2rem;border-radius:2rem;">
+    {{ form.hidden_tag() }}
+    <div style="margin-bottom:1.5rem;">
+        {{ form.username.label }}
+        {{ form.username(class="form-control", style="width:100%;padding:0.8rem;background:var(--bg-input);border:1px solid var(--border-color);border-radius:1rem;color:var(--text-primary);") }}
+    </div>
+    <div style="margin-bottom:1.5rem;">
+        {{ form.password.label }}
+        {{ form.password(class="form-control", style="width:100%;padding:0.8rem;background:var(--bg-input);border:1px solid var(--border-color);border-radius:1rem;color:var(--text-primary);") }}
+    </div>
+    <div style="margin-bottom:1.5rem;">
+        {{ form.otp_token.label }}
+        {{ form.otp_token(class="form-control", style="width:100%;padding:0.8rem;background:var(--bg-input);border:1px solid var(--border-color);border-radius:1rem;color:var(--text-primary);") }}
+    </div>
+    <div style="margin-bottom:1.5rem;">
+        {{ form.remember() }}
+        {{ form.remember.label }}
+    </div>
+    <div style="margin:1rem 0;">
+        <label>Проверка: сколько будет {{ captcha_a }} + {{ captcha_b }}?</label>
+        <input type="text" name="captcha_answer" required style="width:100%;padding:0.8rem;background:var(--bg-input);border:1px solid var(--border-color);border-radius:1rem;color:var(--text-primary);">
+    </div>
+    <button type="submit" style="background:#5f73ff;border:none;color:white;padding:0.8rem;border-radius:2rem;width:100%;font-weight:bold;">Войти</button>
+</form>
+{% endblock %}

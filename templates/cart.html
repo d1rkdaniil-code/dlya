@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 style="font-size:2rem;">🛒 Корзина</h2>
+{% if items %}
+<table style="width:100%;border-collapse:collapse;background:var(--bg-table);border-radius:1.5rem;overflow:hidden;">
+    <thead style="background:var(--bg-header);">
+        <tr>
+            <th style="padding:1rem;text-align:left;">Товар</th>
+            <th style="padding:1rem;text-align:center;">Цена</th>
+            <th style="padding:1rem;text-align:center;">Количество</th>
+            <th style="padding:1rem;text-align:center;">Сумма</th>
+            <th style="padding:1rem;text-align:center;">Действие</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in items %}
+        <tr style="border-bottom:1px solid var(--border-color);">
+            <td style="padding:1rem;">{{ item.name }}</td>
+            <td style="padding:1rem;text-align:center;">{{ item.price }} ₽</td>
+            <td style="padding:1rem;text-align:center;">{{ item.qty }}</td>
+            <td style="padding:1rem;text-align:center;">{{ item.price * item.qty }} ₽</td>
+            <td style="padding:1rem;text-align:center;">
+                <form method="POST" action="{{ url_for('projects.remove_from_cart', product_id=item.id) }}" style="display:inline;">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    <button type="submit" style="background:none;border:none;color:#ff6b6b;cursor:pointer;">Удалить</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3" style="padding:1rem;text-align:right;font-weight:bold;">Итого:</td>
+            <td style="padding:1rem;text-align:center;font-weight:bold;color:var(--text-accent);">{{ total }} ₽</td>
+            <td style="padding:1rem;"></td>
+        </tr>
+    </tfoot>
+</table>
+<div style="display:flex;gap:1rem;margin-top:1.5rem;justify-content:flex-end;">
+    <form method="POST" action="{{ url_for('projects.clear_cart') }}" style="display:inline;">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <button type="submit" style="background:#ff6b6b;color:white;padding:0.6rem 1.5rem;border-radius:2rem;border:none;cursor:pointer;">Очистить</button>
+    </form>
+    <a href="{{ url_for('projects.shop_bot') }}" style="background:var(--bg-header);color:var(--text-primary);padding:0.6rem 1.5rem;border-radius:2rem;text-decoration:none;">Продолжить покупки</a>
+</div>
+{% else %}
+<p style="color:var(--text-secondary);">Корзина пуста.</p>
+<a href="{{ url_for('projects.shop_bot') }}" style="background:#5f73ff;color:white;padding:0.6rem 1.5rem;border-radius:2rem;text-decoration:none;">Перейти в каталог</a>
+{% endif %}
+{% endblock %}

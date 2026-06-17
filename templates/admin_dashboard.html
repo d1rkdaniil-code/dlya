@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block content %}
+<div style="display:flex;justify-content:space-between;align-items:center;">
+    <h2 style="font-size:2rem;">Админ-панель</h2>
+    <form method="POST" action="{{ url_for('admin.logout') }}" style="display:inline;">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <button type="submit" style="background:#ff6b6b;color:white;padding:0.5rem 1.5rem;border-radius:2rem;border:none;cursor:pointer;">Выйти</button>
+    </form>
+</div>
+
+<h3 style="margin-top:2rem;">Сообщения из контактов</h3>
+<table style="width:100%;border-collapse:collapse;background:var(--bg-table);border-radius:1.5rem;overflow:hidden;margin-bottom:2rem;">
+    <thead style="background:var(--bg-header);">
+        <tr>
+            <th>Имя</th><th>Email</th><th>Сообщение</th><th>Дата</th><th>Статус</th><th>Действие</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for msg in messages %}
+        <tr style="border-bottom:1px solid var(--border-color);">
+            <td style="padding:0.8rem;">{{ msg.name }}</td>
+            <td style="padding:0.8rem;">{{ msg.email }}</td>
+            <td style="padding:0.8rem;">{{ msg.message[:50] }}{% if msg.message|length > 50 %}...{% endif %}</td>
+            <td style="padding:0.8rem;">{{ msg.created_at.strftime('%Y-%m-%d %H:%M') }}</td>
+            <td style="padding:0.8rem;">{% if msg.is_read %}✅{% else %}❌{% endif %}</td>
+            <td style="padding:0.8rem;">
+                {% if not msg.is_read %}
+                <form method="POST" action="{{ url_for('admin.mark_message_read', id=msg.id) }}" style="display:inline;">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    <button type="submit" style="background:none;border:none;color:var(--text-accent);cursor:pointer;">Отметить прочитанным</button>
+                </form>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h3>Заявки из автошколы</h3>
+<table style="width:100%;border-collapse:collapse;background:var(--bg-table);border-radius:1.5rem;overflow:hidden;">
+    <thead style="background:var(--bg-header);">
+        <tr>
+            <th>Имя</th><th>Телефон</th><th>Категория</th><th>Дата</th><th>Статус</th><th>Действие</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for app in applications %}
+        <tr style="border-bottom:1px solid var(--border-color);">
+            <td style="padding:0.8rem;">{{ app.name }}</td>
+            <td style="padding:0.8rem;">{{ app.phone }}</td>
+            <td style="padding:0.8rem;">{{ app.category }}</td>
+            <td style="padding:0.8rem;">{{ app.created_at.strftime('%Y-%m-%d %H:%M') }}</td>
+            <td style="padding:0.8rem;">{% if app.is_processed %}✅{% else %}⏳{% endif %}</td>
+            <td style="padding:0.8rem;">
+                {% if not app.is_processed %}
+                <form method="POST" action="{{ url_for('admin.mark_application_processed', id=app.id) }}" style="display:inline;">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    <button type="submit" style="background:none;border:none;color:var(--text-accent);cursor:pointer;">Отметить обработанной</button>
+                </form>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 style="font-size:2rem;margin-bottom:1rem;">🚀 Мои проекты</h2>
+<div class="card-grid">
+    <div class="card">
+        <h3>🏫 Сайт автошколы</h3>
+        <p>Полноценный сайт с записью на занятия, админ-панелью и Telegram-уведомлениями.</p>
+        <p><small>Стек: Flask, PostgreSQL, Docker, Nginx</small></p>
+        <a href="{{ url_for('projects.auto_school') }}" style="color:var(--text-accent);font-weight:bold;">Посмотреть демо →</a>
+    </div>
+    <div class="card">
+        <h3>🤖 Telegram-бот для магазина</h3>
+        <p>Бот с каталогом, корзиной и оплатой через ЮKassa. Админ-панель в Telegram.</p>
+        <p><small>Стек: aiogram, SQLite, YooKassa API</small></p>
+        <a href="{{ url_for('projects.shop_bot') }}" style="color:var(--text-accent);font-weight:bold;">Посмотреть демо →</a>
+    </div>
+    <div class="card">
+        <h3>📊 Парсер вакансий HH.ru</h3>
+        <p>Сбор, фильтрация, выгрузка в Excel и построение графиков.</p>
+        <p><small>Стек: requests, BeautifulSoup, pandas, matplotlib</small></p>
+        <a href="{{ url_for('projects.hh_parser') }}" style="color:var(--text-accent);font-weight:bold;">Посмотреть демо →</a>
+    </div>
+    <div class="card">
+        <h3>📁 Данное портфолио</h3>
+        <p>Сайт-визитка на Flask с адаптивным дизайном и формой обратной связи.</p>
+        <p><small>Стек: Flask, Jinja2, ванильный JS</small></p>
+        <a href="{{ url_for('main.index') }}" style="color:var(--text-accent);font-weight:bold;">Перейти на главную →</a>
+    </div>
+</div>
+{% endblock %}

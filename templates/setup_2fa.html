@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 style="font-size:2rem;">Настройка двухфакторной аутентификации</h2>
+<p style="color:var(--text-secondary);">Отсканируйте QR-код в приложении Google Authenticator или аналогичном.</p>
+<div style="text-align:center;margin:2rem 0;">
+    <img src="{{ qr_url }}" alt="QR Code">
+</div>
+<p style="color:var(--text-secondary);">Или введите код вручную: <strong>{{ secret }}</strong></p>
+<form method="POST" action="{{ url_for('admin.enable_2fa') }}" style="max-width:400px;margin:0 auto;background:var(--bg-form);padding:2rem;border-radius:2rem;">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <div style="margin-bottom:1.5rem;">
+        <label>Введите код из приложения</label>
+        <input type="text" name="token" required style="width:100%;padding:0.8rem;background:var(--bg-input);border:1px solid var(--border-color);border-radius:1rem;color:var(--text-primary);">
+    </div>
+    <button type="submit" style="background:#5f73ff;border:none;color:white;padding:0.8rem;border-radius:2rem;width:100%;font-weight:bold;">Включить 2FA</button>
+</form>
+{% endblock %}

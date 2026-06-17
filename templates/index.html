@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<section style="display:flex;flex-wrap:wrap;gap:2rem;align-items:center;">
+    <div style="flex:1;">
+        <h2 style="font-size:2.2rem;background:linear-gradient(135deg,#b4bfff,#7a8cff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Привет, я Даниил!</h2>
+        <p style="font-size:1.2rem;color:var(--text-secondary);">Мне 16 лет, я занимаюсь веб-разработкой на Python с 14 лет. Имею сертификат об окончании курса по Python и C++. Специализируюсь на бэкенде (Flask, Django), создании Telegram-ботов, парсинге данных и безопасности веб-приложений.</p>
+        <p style="margin-top:1rem;">🔹 <strong>Стек:</strong> Python, Flask, Django, SQLAlchemy, PostgreSQL, Docker, Git, Linux, HTML/CSS/JS (ванильный).</p>
+        <p>🔹 <strong>Опыт:</strong> разрабатывал полноценные сайты, ботов и системы автоматизации для бизнеса.</p>
+        <p style="margin-top:1.5rem;"><a href="{{ url_for('main.projects') }}" style="background:#5f73ff;color:#fff;padding:0.8rem 2rem;border-radius:3rem;text-decoration:none;font-weight:bold;">Посмотреть проекты →</a></p>
+    </div>
+    <div style="flex:1;text-align:center;">
+        <img src="{{ url_for('static', filename='img/avatar.jpg') }}" alt="avatar" style="border-radius:50%;width:200px;height:200px;object-fit:cover;border:4px solid #5f73ff;box-shadow:0 0 30px rgba(95,115,255,0.3);">
+    </div>
+</section>
+{% endblock %}
