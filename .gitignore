@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+.env
+*.db
+data/
+migrations/versions/*
+!migrations/versions/.gitkeep
+.pytest_cache/
+.mypy_cache/
+dist/
+build/
+*.egg-info/
